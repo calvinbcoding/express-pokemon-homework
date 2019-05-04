@@ -1,1 +1,8 @@
 node_modules
+coverage
+unused-stuff.rtf
+record
+server.jsrecord
+settings.json
+launch.json
+*node_modules
