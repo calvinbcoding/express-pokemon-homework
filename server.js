@@ -10,13 +10,13 @@ const morgan = require('morgan')
 app.use(morgan('short'));
 //app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static('public'));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
 //db
-require('./db/db');
+//require('./db/db');
 
-const pokemon = require('./pokemon');
+const Pokemon = require('./models/pokemon');
 
 // //new route
 //  app.get('/pokemon', (req,res)=>{
@@ -30,12 +30,13 @@ const pokemon = require('./pokemon');
     //res.send(pokemon);
     console.log('index route');
      res.render('index.ejs', {
-       pokemon});
+       pokemon: Pokemon
+      });
   });
 
   //new
   app.get('/pokemon/new', (req, res) => {
-    res.render('new.ejs'), {pokemon};
+    res.render('new.ejs');
   });
 
 
@@ -46,13 +47,13 @@ const pokemon = require('./pokemon');
   });
 
 //edit
-  app.get('/pokemon/:id/edit', (req, res) => {
-       res.render('edit.ejs', {
-         pokemon: pokemon[req.params.id]
-       });
-       console.log('edit route');
-  
+app.get('/pokemon/:id/edit', (req, res) => {
+    res.render('edit.ejs', {
+         pokemon: Pokemon[req.params.id],
+         id: req.params.id
     });
+  //console.log('edit route');
+});
 
     //show
     app.get('/pokemon/:id', (req, res) => {
@@ -67,7 +68,7 @@ const pokemon = require('./pokemon');
       res.redirect('/pokemon');
     });
 
-    //delete
+ //delete
     app.delete('/pokemon/:id', (req, res) => {
       pokemon.splice(req.params.id, 1);
       res.redirect('/pokemon');
