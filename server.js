@@ -58,19 +58,19 @@ app.get('/pokemon/:id/edit', (req, res) => {
     //show
     app.get('/pokemon/:id', (req, res) => {
       res.render('show.ejs', {
-        pokemon: pokemon[req.params.id]
+        pokemon: Pokemon[req.params.id]
       });
     });
 
     //update
     app.put('/pokemon/:id', (req, res) => {
-      pokemon[req.params.id] = req.body;
+      Pokemon[req.params.id] = req.body;
       res.redirect('/pokemon');
     });
 
  //delete
     app.delete('/pokemon/:id', (req, res) => {
-      pokemon.splice(req.params.id, 1);
+      Pokemon.splice(req.params.id, 1);
       res.redirect('/pokemon');
     });
 

@@ -1,4 +1,4 @@
-const pokemon = [{
+const Pokemon = [{
     name: "Bulbasaur", 
     img: "http://img.pokemondb.net/artwork/bulbasaur.jpg"
 }, 
