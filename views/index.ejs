@@ -7,7 +7,7 @@
     <body>
         <ul class="pokemon">
             <% for(let i = 0; i< pokemon.length; i++){ %>  
-                <li> <a href="/pokemon/<%=i%>"><%pokemon[i].name%></a></li>
+                <li> <a href="/pokemon/<%=i%>"><%=pokemon[i].name%></a></li>
                 <form action="/pokemon/<%=i%>?_method=DELETE" method="POST">
                     <input type="submit" value="DELETE">
                 </form>
