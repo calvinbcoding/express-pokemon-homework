@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
 //db
-//require('./db/db');
+require('./db/db');
 
-const Pokemon = require('./models/pokemon');
+//const Pokemon = require('./db/db');
 
 // //new route
 //  app.get('/pokemon', (req,res)=>{
@@ -30,7 +30,7 @@ const Pokemon = require('./models/pokemon');
     //res.send(pokemon);
     console.log('index route');
      res.render('index.ejs', {
-       pokemon: Pokemon
+       pokemon: Pokemon,
       });
   });
 
@@ -42,7 +42,7 @@ const Pokemon = require('./models/pokemon');
 
   //create
   app.post('/pokemon', (req, res) => {
-    pokemon.push(req.body);
+    Pokemon.push(req.body);
     res.redirect('/pokemon');
   });
 
@@ -58,7 +58,8 @@ app.get('/pokemon/:id/edit', (req, res) => {
     //show
     app.get('/pokemon/:id', (req, res) => {
       res.render('show.ejs', {
-        pokemon: Pokemon[req.params.id]
+        pokemon: Pokemon[req.params.id],
+        id: req.params.id
       });
     });
 
